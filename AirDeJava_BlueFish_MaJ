@@ -1,0 +1,261 @@
+#--------------------------------------
+#	Script SQL Fil Rouge Un air de Java
+
+
+
+#-----------------------------	                              
+#	tables sans clé étrangère    
+                               
+                               
+create table	DENOMINATION
+		(Denomination_Id					int(9) unsigned auto_increment 
+		,Primary Key(Denomination_Id)		
+		,Denomination_Libelle			varchar(50)
+		,Denomination_DateDeCreation	date
+		,Denomination_DateDeScission	date
+#####	,Denomination_Photo				medium blob
+		,Denomination_SiteWeb			varchar(100)
+		)	
+		engine=InnoDB, charset=utf8;
+		
+create table	STYLE
+		(Style_Id			int(3) unsigned auto_increment 
+		,Primary Key(Style_Id)		
+		,Style_Libelle	varchar(50)
+		)
+		engine=InnoDB, charset=utf8;
+		
+		
+create table	REGION
+		(Region_Id			int(3) unsigned auto_increment	
+		,Primary Key(Region_Id)
+		,Region_Libelle	varchar(50)	
+		)
+		engine=InnoDB, charset=utf8;
+		
+create table 	PAYS
+		(Pays_Id			int(3) unsigned auto_increment	
+		,Primary Key(Pays_Id)
+		,Pays_Libelle	varchar(50)
+		)
+		engine=InnoDB, charset=utf8;
+		
+create table	CIVILITE
+		(Civilite_Id		int(2) unsigned auto_increment	
+		,Primary Key(Civilite_Id)		
+		,Civilite_Titre	varchar(25)
+		)				
+		engine=InnoDB, charset=utf8;
+		
+create table 	DROITS
+		(Droits_Id		int(1) unsigned auto_increment	
+		,Primary Key(Droits_Id)	
+		,Droits_Profil	varchar(25)
+		)	
+		engine=InnoDB, charset=utf8;
+		
+create table	SPECIALITE
+		(Specialite_Id			int(2) unsigned auto_increment	
+		,Primary Key(Specialite_Id)
+		,Specialite_Libelle	varchar(25)
+		)	
+		engine=InnoDB, charset=utf8;
+		
+		
+create table	INSTRUMENT
+			(Instrument_Id			int(2) unsigned auto_increment	
+			,Primary Key(Instrument_Id)
+			,Instrument_Libelle	varchar(25)
+			)		
+			engine=InnoDB, charset=utf8;
+				
+create table 	COORDONNEES		
+			(Coord_Id			int(9) unsigned auto_increment	
+			,Primary Key(Coord_Id)
+########	,Coord_AdrNum		varchar(7)
+			,Coord_AdrRue		varchar(100)
+			,Coord_AdrVille	varchar(50)
+			,Coord_AdrCPostal	varchar(9)
+			,Coord_AdrMail		varchar(100)
+########	,Coord_IndicaTel	varchar(5)
+			,Coord_Cellulaire	varchar(14) 
+			,Coord_TelFixe		varchar(14)
+			,Coord_Fax			varchar(14)	
+			)
+			engine=InnoDB, charset=utf8;		
+			
+create table	TYPE_OEUVRE
+			(TypeO_Id		int(1) unsigned auto_increment	
+			,Primary Key(TypeO_Id)
+			,TypeO_Libelle	varchar(50)	
+			)		
+			engine=InnoDB, charset=utf8;
+			
+create table	PERIODICITE
+			(Periodicite_Id	int(2) unsigned auto_increment	
+			,Primary Key(Periodicite_Id)
+			,Periodicite_Type	varchar(25)	
+			)			
+			engine=InnoDB ,charset=utf8;			
+		
+
+		
+#--------------------------------                               
+#	tables avec clé étrangère    
+		
+		
+create table	GROUPE
+			(Groupe_Id			int(1) unsigned auto_increment	
+			,Primary Key (Groupe_Id)
+			
+			,Groupe_NomActuel	varchar(50)
+			
+			,Coord_Id			int(9) unsigned not null
+			,Foreign Key (Coord_Id) references COORDONNEES(Coord_Id)
+			
+			,Pays_Id				int(3) unsigned not null			
+			,Foreign Key (Pays_Id) references	PAYS(Pays_Id)
+			
+			,Region_Id			int(3) unsigned not null
+			,Foreign Key (Region_Id) references REGION(Region_Id)	
+			
+			,Denomination_Id	int(9) unsigned not null
+			,Foreign Key (Denomination_Id) references DENOMINATION(Denomination_Id) 	
+			
+			,Style_Id			int(3) unsigned not null
+			,Foreign Key (Style_Id) references STYLE(Style_Id) 
+			) 
+			engine=InnoDB, charset=utf8;	
+
+create table	PERSONNE
+			(Personne_Id			int(9) unsigned auto_increment
+			,Primary Key (Personne_Id)
+			
+			,Personne_Nom			varchar(25)
+			,Personne_Prenom		varchar(25)		
+			,Personne_CodeAcces 	varchar(10)
+			
+			,Civilite_Id			int(2) unsigned not null
+			,Foreign Key (Civilite_Id) references CIVILITE(Civilite_Id)
+		
+			,Coord_Id				int(9) unsigned not null
+			,Foreign Key (Coord_Id) references COORDONNEES(Coord_Id)
+		
+			,Droits_Id				int(1) unsigned not null
+			,Foreign Key (Droits_Id) references DROITS(Droits_Id)
+			)
+			engine=InnoDB, charset=utf8;
+
+create table	OEUVRE
+			(Oeuvre_Id		int(9) unsigned auto_increment
+			,Primary Key(Oeuvre_Id)	
+			
+			,Oeuvre_Libelle	varchar(50)
+			,Oeuvre_Duree	varchar(5)
+			
+			,TypeO_Id			int(3) unsigned not null
+			,Foreign Key (TypeO_Id) references TYPE_OEUVRE(TypeO_Id)
+			)
+			engine=InnoDB, charset=utf8;
+			
+create table RENCONTRE
+			(Rencontre_Id						int(9) unsigned auto_increment
+			,Primary Key(Rencontre_Id)
+									
+			,Rencontre_Libelle				varchar(50)
+			,Rencontre_Lieu					varchar(50)
+			,Rencontre_DateDebut				date
+			,Rencontre_DateFin				date
+			,Rencontre_NbPersPrevues		int(4)
+			,Rencontre_InscriptionCloture	date
+			
+			,Periodicite_Id					int(2) unsigned not null
+			,Foreign Key(Periodicite_Id) references PERIODICITE(Periodicite_Id)			
+			)
+			engine=InnoDB, charset=utf8;
+			
+		
+#--------------------------------
+#	  tables des associatons	  		
+						
+create table	Membre		
+			(Groupe_Id			int(9) unsigned not null
+			,Personne_Id		int(9) unsigned not null
+			,Primary Key (Groupe_Id,Personne_Id)
+			
+			,Responsabilite	varchar(50)
+			,Corres_DateDebut	date
+			,Corres_DateFin	date
+			)
+			engine=InnoDB, charset=utf8;
+			
+create table	Interpreter
+			(Groupe_Id	int(9) unsigned not null
+			,Oeuvre_Id	int(9) unsigned not null
+			,Primary Key (Groupe_Id,Oeuvre_Id)
+			
+			,CompoDate	date
+			)
+			engine=InnoDB, charset=utf8;
+			
+create table	Participer		
+			(Rencontre_Id	int(9) unsigned not null
+			,Personne_Id	int(9) unsigned not null
+			,Primary Key(Rencontre_Id,Personne_Id)
+			
+			,Organisateur	boolean
+			)
+			engine=InnoDB, charset=utf8;
+			
+create table	Programmer
+			(Rencontre_Id	int(9) unsigned not null
+			,Oeuvre_Id		int(9) unsigned not null
+			,Primary Key(Rencontre_Id,Oeuvre_Id)
+			
+			,DureePrevue	varchar(5)
+			)
+			engine=InnoDB, charset=utf8;
+			
+create table	Prestation			
+			(Rencontre_Id	int(9) unsigned not null
+			,Groupe_Id		int(9) unsigned not null
+			,Oeuvre_Id		int(9) unsigned not null
+			,Primary Key (Rencontre_Id,Groupe_Id,Oeuvre_Id)
+			
+			,HoraireDebut	datetime
+			,HoraireFin		datetime
+			,SceneLieu		varchar(50)
+			)
+			engine=InnoDB, charset=utf8;
+
+
+#-----------------------------
+#	Initialisation de tables
+#-----------------------------
+
+#
+#Insert into DROITS values (Droits_Profil="Admin"),(Droits_Profil="Utilisateur"),(Droits_Profil="Invité");
+#
+
+Insert DROITS set
+	Droits_Profil='Admin';
+	
+Insert DROITS set	
+	Droits_Profil='Utilisateur';
+
+Insert DROITS set	
+	Droits_Profil='Invité';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
