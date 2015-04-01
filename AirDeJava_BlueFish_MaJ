@@ -132,7 +132,8 @@ create table	PERSONNE
 			,Primary Key (Personne_Id)
 			
 			,Personne_Nom		varchar(25)
-			,Personne_Prenom	varchar(25)		
+			,Personne_Prenom	varchar(25)
+			,Personne_DateNaissance	date
 			,Personne_CodeAcces 	varchar(10)
 			
 			,Civilite_Id		int(2) unsigned not null
