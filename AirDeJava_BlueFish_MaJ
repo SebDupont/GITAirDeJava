@@ -237,15 +237,16 @@ create table	Prestation
 #
 #Insert into DROITS values (Droits_Profil="Admin"),(Droits_Profil="Utilisateur"),(Droits_Profil="Invité");
 #
-
-Insert DROITS set
-	Droits_Profil='Admin';
-	
-Insert DROITS set	
-	Droits_Profil='Utilisateur';
-
-Insert DROITS set	
-	Droits_Profil='Invité';
+insert into DROITS(Droits_Profil)
+	values		('MightyMaster')
+			,('Admin')
+			,('Utilisateur')
+			,('Invité')
+			,('Sauron')
+			,('Nazgul')
+			,('Huruk Hai')
+			,('Shelob')
+			;
 
 #-----------------------------------#
 # Air de Java - Alimentation Table
@@ -284,17 +285,6 @@ insert into PAYS(Pays_Libelle)
 	values		('France')
 			,('Allemagne')
 			,('États-unis (USA)')
-			;
-
-insert into DROITS(Droits_Profil)
-	values		('MightyMaster')
-			,('Admin')
-			,('Utilisateur')
-			,('Invité')
-			,('Sauron')
-			,('Nazgul')
-			,('Huruk Hai')
-			,('Shelob')
 			;
 
 insert into SPECIALITE(Specialite_Libelle)
