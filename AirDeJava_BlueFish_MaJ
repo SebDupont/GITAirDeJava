@@ -8,18 +8,18 @@
                                
                                
 create table	DENOMINATION
-		(Denomination_Id					int(9) unsigned auto_increment 
+		(Denomination_Id		int(9) unsigned auto_increment 
 		,Primary Key(Denomination_Id)		
-		,Denomination_Libelle			varchar(50)
+		,Denomination_Libelle		varchar(50)
 		,Denomination_DateDeCreation	date
 		,Denomination_DateDeScission	date
-#####	,Denomination_Photo				medium blob
-		,Denomination_SiteWeb			varchar(100)
+###############	,Denomination_Photo		medium blob
+		,Denomination_SiteWeb		varchar(100)
 		)	
 		engine=InnoDB, charset=utf8;
 		
 create table	STYLE
-		(Style_Id			int(3) unsigned auto_increment 
+		(Style_Id	int(3) unsigned auto_increment 
 		,Primary Key(Style_Id)		
 		,Style_Libelle	varchar(50)
 		)
@@ -27,35 +27,35 @@ create table	STYLE
 		
 		
 create table	REGION
-		(Region_Id			int(3) unsigned auto_increment	
+		(Region_Id	int(3) unsigned auto_increment	
 		,Primary Key(Region_Id)
 		,Region_Libelle	varchar(50)	
 		)
 		engine=InnoDB, charset=utf8;
 		
 create table 	PAYS
-		(Pays_Id			int(3) unsigned auto_increment	
+		(Pays_Id	int(3) unsigned auto_increment	
 		,Primary Key(Pays_Id)
 		,Pays_Libelle	varchar(50)
 		)
 		engine=InnoDB, charset=utf8;
 		
 create table	CIVILITE
-		(Civilite_Id		int(2) unsigned auto_increment	
+		(Civilite_Id	int(2) unsigned auto_increment	
 		,Primary Key(Civilite_Id)		
 		,Civilite_Titre	varchar(25)
 		)				
 		engine=InnoDB, charset=utf8;
 		
 create table 	DROITS
-		(Droits_Id		int(1) unsigned auto_increment	
+		(Droits_Id	int(1) unsigned auto_increment	
 		,Primary Key(Droits_Id)	
 		,Droits_Profil	varchar(25)
 		)	
 		engine=InnoDB, charset=utf8;
 		
 create table	SPECIALITE
-		(Specialite_Id			int(2) unsigned auto_increment	
+		(Specialite_Id		int(2) unsigned auto_increment	
 		,Primary Key(Specialite_Id)
 		,Specialite_Libelle	varchar(25)
 		)	
@@ -63,14 +63,14 @@ create table	SPECIALITE
 		
 		
 create table	INSTRUMENT
-			(Instrument_Id			int(2) unsigned auto_increment	
+			(Instrument_Id		int(2) unsigned auto_increment	
 			,Primary Key(Instrument_Id)
 			,Instrument_Libelle	varchar(25)
 			)		
 			engine=InnoDB, charset=utf8;
 				
 create table 	COORDONNEES		
-			(Coord_Id			int(9) unsigned auto_increment	
+			(Coord_Id		int(9) unsigned auto_increment	
 			,Primary Key(Coord_Id)
 ########	,Coord_AdrNum		varchar(7)
 			,Coord_AdrRue		varchar(100)
@@ -80,19 +80,19 @@ create table 	COORDONNEES
 ########	,Coord_IndicaTel	varchar(5)
 			,Coord_Cellulaire	varchar(14) 
 			,Coord_TelFixe		varchar(14)
-			,Coord_Fax			varchar(14)	
+			,Coord_Fax		varchar(14)	
 			)
 			engine=InnoDB, charset=utf8;		
 			
 create table	TYPE_OEUVRE
-			(TypeO_Id		int(1) unsigned auto_increment	
+			(TypeO_Id	int(1) unsigned auto_increment	
 			,Primary Key(TypeO_Id)
 			,TypeO_Libelle	varchar(50)	
 			)		
 			engine=InnoDB, charset=utf8;
 			
 create table	PERIODICITE
-			(Periodicite_Id	int(2) unsigned auto_increment	
+			(Periodicite_Id		int(2) unsigned auto_increment	
 			,Primary Key(Periodicite_Id)
 			,Periodicite_Type	varchar(25)	
 			)			
@@ -105,71 +105,71 @@ create table	PERIODICITE
 		
 		
 create table	GROUPE
-			(Groupe_Id			int(1) unsigned auto_increment	
+			(Groupe_Id		int(1) unsigned auto_increment	
 			,Primary Key (Groupe_Id)
 			
 			,Groupe_NomActuel	varchar(50)
 			
-			,Coord_Id			int(9) unsigned not null
+			,Coord_Id		int(9) unsigned not null
 			,Foreign Key (Coord_Id) references COORDONNEES(Coord_Id)
 			
-			,Pays_Id				int(3) unsigned not null			
+			,Pays_Id		int(3) unsigned not null			
 			,Foreign Key (Pays_Id) references	PAYS(Pays_Id)
 			
-			,Region_Id			int(3) unsigned not null
+			,Region_Id		int(3) unsigned not null
 			,Foreign Key (Region_Id) references REGION(Region_Id)	
 			
 			,Denomination_Id	int(9) unsigned not null
 			,Foreign Key (Denomination_Id) references DENOMINATION(Denomination_Id) 	
 			
-			,Style_Id			int(3) unsigned not null
+			,Style_Id		int(3) unsigned not null
 			,Foreign Key (Style_Id) references STYLE(Style_Id) 
 			) 
 			engine=InnoDB, charset=utf8;	
 
 create table	PERSONNE
-			(Personne_Id			int(9) unsigned auto_increment
+			(Personne_Id		int(9) unsigned auto_increment
 			,Primary Key (Personne_Id)
 			
-			,Personne_Nom			varchar(25)
-			,Personne_Prenom		varchar(25)		
+			,Personne_Nom		varchar(25)
+			,Personne_Prenom	varchar(25)		
 			,Personne_CodeAcces 	varchar(10)
 			
-			,Civilite_Id			int(2) unsigned not null
+			,Civilite_Id		int(2) unsigned not null
 			,Foreign Key (Civilite_Id) references CIVILITE(Civilite_Id)
 		
-			,Coord_Id				int(9) unsigned not null
+			,Coord_Id		int(9) unsigned not null
 			,Foreign Key (Coord_Id) references COORDONNEES(Coord_Id)
 		
-			,Droits_Id				int(1) unsigned not null
+			,Droits_Id		int(1) unsigned not null
 			,Foreign Key (Droits_Id) references DROITS(Droits_Id)
 			)
 			engine=InnoDB, charset=utf8;
 
 create table	OEUVRE
-			(Oeuvre_Id		int(9) unsigned auto_increment
+			(Oeuvre_Id	int(9) unsigned auto_increment
 			,Primary Key(Oeuvre_Id)	
 			
 			,Oeuvre_Libelle	varchar(50)
 			,Oeuvre_Duree	varchar(5)
 			
-			,TypeO_Id			int(3) unsigned not null
+			,TypeO_Id	int(3) unsigned not null
 			,Foreign Key (TypeO_Id) references TYPE_OEUVRE(TypeO_Id)
 			)
 			engine=InnoDB, charset=utf8;
 			
 create table RENCONTRE
-			(Rencontre_Id						int(9) unsigned auto_increment
+			(Rencontre_Id			int(9) unsigned auto_increment
 			,Primary Key(Rencontre_Id)
 									
-			,Rencontre_Libelle				varchar(50)
-			,Rencontre_Lieu					varchar(50)
-			,Rencontre_DateDebut				date
-			,Rencontre_DateFin				date
-			,Rencontre_NbPersPrevues		int(4)
+			,Rencontre_Libelle		varchar(50)
+			,Rencontre_Lieu			varchar(50)
+			,Rencontre_DateDebut		date
+			,Rencontre_DateFin		date
+			,Rencontre_NbPersPrevues	int(4)
 			,Rencontre_InscriptionCloture	date
 			
-			,Periodicite_Id					int(2) unsigned not null
+			,Periodicite_Id			int(2) unsigned not null
 			,Foreign Key(Periodicite_Id) references PERIODICITE(Periodicite_Id)			
 			)
 			engine=InnoDB, charset=utf8;
@@ -179,7 +179,7 @@ create table RENCONTRE
 #	  tables des associatons	  		
 						
 create table	Membre		
-			(Groupe_Id			int(9) unsigned not null
+			(Groupe_Id		int(9) unsigned not null
 			,Personne_Id		int(9) unsigned not null
 			,Primary Key (Groupe_Id,Personne_Id)
 			
@@ -209,7 +209,7 @@ create table	Participer
 			
 create table	Programmer
 			(Rencontre_Id	int(9) unsigned not null
-			,Oeuvre_Id		int(9) unsigned not null
+			,Oeuvre_Id	int(9) unsigned not null
 			,Primary Key(Rencontre_Id,Oeuvre_Id)
 			
 			,DureePrevue	varchar(5)
@@ -218,19 +218,19 @@ create table	Programmer
 			
 create table	Prestation			
 			(Rencontre_Id	int(9) unsigned not null
-			,Groupe_Id		int(9) unsigned not null
-			,Oeuvre_Id		int(9) unsigned not null
+			,Groupe_Id	int(9) unsigned not null
+			,Oeuvre_Id	int(9) unsigned not null
 			,Primary Key (Rencontre_Id,Groupe_Id,Oeuvre_Id)
 			
 			,HoraireDebut	datetime
-			,HoraireFin		datetime
-			,SceneLieu		varchar(50)
+			,HoraireFin	datetime
+			,SceneLieu	varchar(50)
 			)
 			engine=InnoDB, charset=utf8;
 
 
 #-----------------------------
-#	Initialisation de tables
+#  Initialisation de tables
 #-----------------------------
 
 #
@@ -246,6 +246,89 @@ Insert DROITS set
 Insert DROITS set	
 	Droits_Profil='Invité';
 
+#-----------------------------------#
+# Air de Java - Alimentation Table
+#
+
+insert into DENOMINATION(Denomination_Libelle,Denomination_DateCreation, Denomination_DateScission,Denomination_SiteWeb)
+	values		('Les indiens fringants'	,1999-04-01	,''		,'www.wildernessPransing.net')
+			,('Les castors seniors'		,1982-04-01	,2001-09-01	,'www.csdonalduckyoudavycroket.web')
+			,('Les negresses mauves'	,'2003-07-30	,''		,'www.nm-site.cam')
+			,('Les i points'		,'2012-12-12	,''		,'www.lzdirtyspanks.slt')
+			;
+				
+				
+insert into	STYLE(Style_Libelle)
+	values		('rock')
+			,('choeurs')
+			,('orchestre traditionnel')
+			;		
+					
+insert into REGION(Region_Libelle)
+	values		('Pays Basque')
+			,('Bretagne')
+			;		
+					
+					
+insert into PAYS(Pays_Libelle)
+	values		('France')
+			,('Allemagne')
+			,('États-unis (USA)')
+			;
+
+insert into DROITS(Droits_Libelle)
+	values		('Admin')
+			,('Utilisateur')
+			,('Invité')
+			,('Sauron')
+			,('Nazgul')
+			,('Huruk Hai')
+			,('Shelob')
+			;
+
+insert into SPECIALITE(Specialite_Libelle)
+	values		('soliste')
+			,('choriste')
+			,('musicien')
+
+
+insert into INSTRUMENT(Instrument_Libelle)
+	values		('guitare')
+			,('violon')
+			,('violoncelle')
+			;
+
+insert into CORDONNEES(Coord_AdrRue,Coord_AdrVille,Coord_AdrCPostal)
+	values		('37, rue des grenouilles'	,'Laon'		,'02000')
+			,(' 8, daemon s end'		,'Towntown	,'125h5a')
+			,('666 sooo evil devil street'	,'StuffCity'	,'28tz13')
+			,(' 45 bis, calle leche'	,'Barcelone'	,'0a511')
+			,(' 88 ter, quai des brunes'	,'Bruxelle'	,'456')
+			;
+'
+
+
+insert into CIVILITE(Civilite_Titre)
+	values		('Madame')
+			,('Monsieur')
+			,('Mademoiselle')
+			,('Damoiseau')
+			,('Sir')
+			,('Lady')
+			,('Maître')
+                    	,('Docteur')
+                    	,('Son Excellence')
+                    	,('Professeur)
+			;
+
+#-------------------------
+#  Exemple d'inner join
+
+#SELECT PERSONNE.Personne_Nom
+#From PERSONNE
+#inner join DROITS
+#on PERSONNE.Droits_Id=DROITS.Droits_Id
+#where Droits.Droits_Profil='Sauron';
 
 
 
