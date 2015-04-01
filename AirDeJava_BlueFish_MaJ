@@ -329,7 +329,7 @@ insert into COORDONNEES(Coord_AdrRue,Coord_AdrVille,Coord_AdrCPostal)
 			,(' 45 bis, calle leche'	,'Barcelone'	,'0a511')
 			,(' 88 ter, quai des brunes'	,'Bruxelles'	,'456')
 			;
-'
+
 
 
 insert into CIVILITE(Civilite_Titre)
