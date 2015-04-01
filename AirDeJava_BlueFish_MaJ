@@ -250,11 +250,11 @@ Insert DROITS set
 # Air de Java - Alimentation Table
 #
 
-insert into DENOMINATION(Denomination_Libelle,Denomination_DateCreation, Denomination_DateScission,Denomination_SiteWeb)
-	values		('Les indiens fringants'	,1999-04-01	,''		,'www.wildernessPransing.net')
-			,('Les castors seniors'		,1982-04-01	,2001-09-01	,'www.csdonalduckyoudavycroket.web')
-			,('Les negresses mauves'	,'2003-07-30	,''		,'www.nm-site.cam')
-			,('Les i points'		,'2012-12-12	,''		,'www.lzdirtyspanks.slt')
+insert into DENOMINATION(Denomination_Libelle,Denomination_DateDeCreation, Denomination_DateDeScission,Denomination_SiteWeb)
+	values		('Les indiens fringants'	,'1999-04-01'	,''		,'www.wildernessPransing.net')
+			,('Les castors seniors'		,'1982-04-01'	,'2001-09-01'	,'www.csdonalduckyoudavycroket.web')
+			,('Les negresses mauves'	,'2003-07-30'	,''		,'www.nm-site.cam')
+			,('Les i points'		,'2012-12-12'	,''		,'www.lzdirtyspanks.slt')
 			;
 				
 				
@@ -262,12 +262,21 @@ insert into	STYLE(Style_Libelle)
 	values		('rock')
 			,('choeurs')
 			,('orchestre traditionnel')
-			;		
+			,('scat');		
 					
-insert into REGION(Region_Libelle)
-	values		('Pays Basque')
-			,('Bretagne')
-			;		
+insert into REGION(Region_Libelle) values
+	('Pays Basque')
+	,('Bretagne')
+	,('CountyShire')
+	,('Churshire')
+	,('Picardie')
+	,('Oregon')
+	,('Utah')
+	,('Vermont')
+	,('Lombardie')
+	,('Casamance')
+	,('Bavière')
+	;		
 					
 					
 insert into PAYS(Pays_Libelle)
@@ -276,8 +285,9 @@ insert into PAYS(Pays_Libelle)
 			,('États-unis (USA)')
 			;
 
-insert into DROITS(Droits_Libelle)
-	values		('Admin')
+insert into DROITS(Droits_Profil)
+	values		('MightyMaster')
+			,('Admin')
 			,('Utilisateur')
 			,('Invité')
 			,('Sauron')
@@ -290,20 +300,33 @@ insert into SPECIALITE(Specialite_Libelle)
 	values		('soliste')
 			,('choriste')
 			,('musicien')
+			;
 
 
 insert into INSTRUMENT(Instrument_Libelle)
 	values		('guitare')
 			,('violon')
 			,('violoncelle')
-			;
+			,('contre-basse')
+			,('violon-alto')
+			,('clavier')
+			,('piano')
+			,('balaïka')
+			,('ocarina')
+			,('biniou')
+			,('triangle')
+			,('guitare-basse')
+			,('steel drums')
+			,('congas')
+			,('djembe')
+			,('voix');
 
-insert into CORDONNEES(Coord_AdrRue,Coord_AdrVille,Coord_AdrCPostal)
+insert into COORDONNEES(Coord_AdrRue,Coord_AdrVille,Coord_AdrCPostal)
 	values		('37, rue des grenouilles'	,'Laon'		,'02000')
-			,(' 8, daemon s end'		,'Towntown	,'125h5a')
+			,(' 8, daemon s end'		,'Towntown'	,'125h5a')
 			,('666 sooo evil devil street'	,'StuffCity'	,'28tz13')
 			,(' 45 bis, calle leche'	,'Barcelone'	,'0a511')
-			,(' 88 ter, quai des brunes'	,'Bruxelle'	,'456')
+			,(' 88 ter, quai des brunes'	,'Bruxelles'	,'456')
 			;
 '
 
@@ -318,7 +341,7 @@ insert into CIVILITE(Civilite_Titre)
 			,('Maître')
                     	,('Docteur')
                     	,('Son Excellence')
-                    	,('Professeur)
+                    	,('Professeur')
 			;
 
 #-------------------------
